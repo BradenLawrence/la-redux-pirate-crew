@@ -16,3 +16,12 @@ const walkThePlank = (name) => {
     name: name
   }
 }
+
+// Initial state
+const defaultCrew = {
+  crew: [
+    { name: "Cap'n Brunzinger" },
+    { name: "Mr. Smitty" }
+  ]
+}
+
