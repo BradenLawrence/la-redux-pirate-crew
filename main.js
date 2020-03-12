@@ -49,10 +49,18 @@ const plankButton = document.querySelector("#walk-the-plank")
 const daveyJonesLocker = document.querySelector("#walked-crew")
 const plankWalkers = document.querySelector("#plank-walkers")
 
+// Event Listeners
 addCrewForm.addEventListener("submit", (event) => {
   event.preventDefault()
   const crewName = event.currentTarget.name.value
   store.dispatch(welcomeAboard(crewName))
+})
+plankButton.addEventListener("click", (event) => {
+  event.preventDefault()
+  if(store.getState().crew.length > 0) {
+    const scurvyBilgeRat = store.getState().crew[0].name
+    store.dispatch(walkThePlank(scurvyBilgeRat))
+  }
 })
 
 // Render
