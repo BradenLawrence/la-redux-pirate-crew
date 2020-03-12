@@ -41,3 +41,23 @@ const crewReducer = (state = defaultCrew, action) => {
   }
 }
 
+// Render
+const store = createStore(crewReducer)
+
+const crewContainer = document.querySelector("#current-crew")
+
+const addCrewForm = document.querySelector("#new-pirate-form")
+addCrewForm.addEventListener("submit", (event) => {
+  event.preventDefault()
+  const crewName = event.currentTarget.name.value
+  store.dispatch(welcomeAboard(crewName))
+})
+
+const render = () => {
+  const crewListDisplay = store.getState().crew.map(crewMember => {
+    return(`<li>${crewMember.name}</li>`)
+  })
+  crewContainer.innerHTML = crewListDisplay.join('')
+}
+render()
+store.subscribe(render)
