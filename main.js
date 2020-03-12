@@ -21,7 +21,8 @@ const defaultCrew = {
   crew: [
     { name: "Cap'n Brunzinger" },
     { name: "Mr. Smitty" }
-  ]
+  ],
+  walked: []
 }
 
 // Reducer
