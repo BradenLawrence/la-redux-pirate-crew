@@ -32,10 +32,14 @@ const crewReducer = (state = defaultCrew, action) => {
       const updatedCrew = state.crew.concat({ name: action.name })
       return Object.assign({}, state, { crew: updatedCrew })
     case DELETE_CREW:
-      const filteredCrew = state.crew.filter(crewMember => {
+      const remainingCrew = state.crew.filter(crewMember => {
         return crewMember.name !== action.name
       })
-      return Object.assign({}, state, { crew: filteredCrew })
+      const walkedCrew = state.walked.concat({ name: action.name })
+      return Object.assign({}, state, {
+        crew: remainingCrew,
+        walked: walkedCrew
+      })
     default:
       return state
   }
