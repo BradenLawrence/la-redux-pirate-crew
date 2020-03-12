@@ -29,8 +29,15 @@ const defaultCrew = {
 const crewReducer = (state = defaultCrew, action) => {
   switch(action.type) {
     case ADD_CREW:
-      const updatedCrew = state.crew.concat({ name: action.name })
-      return Object.assign({}, state, { crew: updatedCrew })
+      const duplicatesFound = state.crew.filter(crewMember => {
+        return crewMember.name === action.name
+      })
+      if(duplicatesFound.length === 0) {
+        const updatedCrew = state.crew.concat({ name: action.name })
+        return Object.assign({}, state, { crew: updatedCrew })
+      } else {
+        return state
+      }
     case DELETE_CREW:
       const remainingCrew = state.crew.filter(crewMember => {
         return crewMember.name !== action.name
